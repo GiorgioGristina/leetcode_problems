@@ -1,0 +1,32 @@
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        words_anagram = {}
+        for word in strs:
+            sorted_word = ''.join(sorted(word))
+            if sorted_word in words_anagram:
+                words_anagram[sorted_word].append(word)
+            else:
+                words_anagram[sorted_word] = [word]
+        return list(words_anagram.values())
+
+
+
+solution = Solution()
+
+# Input: strs = ["eat","tea","tan","ate","nat","bat"]
+
+# Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+print(f"the list of group anagram is: {solution.groupAnagrams(['eat','tea','tan','ate','nat','bat'])}")
+
+# Input: strs = [""]
+
+# Output: [[""]]
+
+print(f"the list of group anagram is: {solution.groupAnagrams([''])}")
+
+# Input: strs = ["a"]
+
+# Output: [["a"]]
+
+print(f"the list of group anagram is: {solution.groupAnagrams(['a'])}")
