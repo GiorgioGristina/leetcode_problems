@@ -1,0 +1,42 @@
+class Solution:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        length = len(nums)
+        pref = [0] * length
+        suf= [0] * length
+        ans = [0] * length
+        # create prefix products 
+        for i, n in enumerate(nums):
+            if i == 0:
+                pref[i] = n
+            else: 
+                pref[i] = n * pref[i -1]
+        # create suffix prod     
+        for i in range(len(nums)-1, -1, -1):
+            if i == len(nums)-1:
+                suf[i] = nums[i]
+            else:
+                suf[i] = nums[i]* suf[i+1]
+        # calc the final prod
+        for i in range(0, length):
+            if i == 0:
+                ans[i] = suf[i + 1]
+            elif i == length -1:
+                ans[i]= pref[i -1]
+            else:
+                ans[i] = pref[i-1] * suf[i+1]
+        print(ans)
+        return ans 
+
+
+solution = Solution()
+
+# Input: nums = [1,2,3,4]
+# Output: [24,12,8,6]
+print(f"the product except self are: {solution.productExceptSelf([1,2,3,4])}")
+
+# Input: nums = [-1,1,0,-3,3]
+# Output: [0,0,9,0,0]
+print(f"the product except self are: {solution.productExceptSelf([-1,1,0,-3,3])}")
+
+ 
+ 
