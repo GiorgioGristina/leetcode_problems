@@ -5,7 +5,6 @@ class Solution:
         left, right = 0, len(s) - 1
 
         while left < right:
-            print(f"befor alphanum check, left: {s[left]} right: {s[right]}")
             while not s[left].isalnum() and left < right:
                 left += 1
             while not s[right].isalnum() and left < right:
